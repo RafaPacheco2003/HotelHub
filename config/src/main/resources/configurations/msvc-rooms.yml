@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: msvc-rooms
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/hotelhub_rooms_db
+    username: hotelhub_rooms_user
+    password: hotelhub_rooms_secret2024
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create  # Cambiado de 'create' a 'update' para desarrollo
+    database: postgresql
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
