@@ -10,8 +10,13 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      routes:
+        - id: msvc-rooms
+          uri: lb://msvc-rooms
+          predicates:
+            - Path=/api/**
 
 eureka:
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://localhost:8761/eureka/

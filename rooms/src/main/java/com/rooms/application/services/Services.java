@@ -1,26 +1,27 @@
 package com.rooms.application.services;
 
 import com.rooms.domian.models.Rooms;
-import com.rooms.domian.ports.in.CreateUseCase;
-import com.rooms.domian.ports.in.DeleteUseCase;
-import com.rooms.domian.ports.in.RetrieveUseCase;
-import com.rooms.domian.ports.in.UpdateUseCase;
+import com.rooms.domian.ports.in.*;
 
 import java.util.List;
 import java.util.Optional;
 
-public class Services implements CreateUseCase, RetrieveUseCase, UpdateUseCase, DeleteUseCase {
+public class Services implements CreateUseCase, RetrieveUseCase, UpdateUseCase, DeleteUseCase, ExistsByIdUseCase, FindByRoomTypeUseCase {
 
     private  final CreateUseCase createUseCase;
     private final RetrieveUseCase retrieveUseCase;
     private final UpdateUseCase updateUseCase;
     private final DeleteUseCase deleteUseCase;
+    private final ExistsByIdUseCase existsByIdUseCase;
+    private final FindByRoomTypeUseCase findByRoomTypeUseCase;
 
-    public Services(CreateUseCase createUseCase, RetrieveUseCase retrieveUseCase, UpdateUseCase updateUseCase, DeleteUseCase deleteUseCase) {
+    public Services(CreateUseCase createUseCase, RetrieveUseCase retrieveUseCase, UpdateUseCase updateUseCase, DeleteUseCase deleteUseCase, ExistsByIdUseCase existsByIdUseCase, FindByRoomTypeUseCase findByRoomTypeUseCase) {
         this.createUseCase = createUseCase;
         this.retrieveUseCase = retrieveUseCase;
         this.updateUseCase = updateUseCase;
         this.deleteUseCase = deleteUseCase;
+        this.existsByIdUseCase = existsByIdUseCase;
+        this.findByRoomTypeUseCase = findByRoomTypeUseCase;
     }
 
 
@@ -48,4 +49,16 @@ public class Services implements CreateUseCase, RetrieveUseCase, UpdateUseCase, 
     public Rooms update(Long roomId, Rooms rooms) {
         return updateUseCase.update(roomId, rooms);
     }
+
+    @Override
+    public void existsById(Long roomId) {
+         existsByIdUseCase.existsById(roomId);
+    }
+
+
+    @Override
+    public List<Rooms> findByRoomType(String roomType) {
+        return findByRoomTypeUseCase.findByRoomType(roomType);
+    }
+
 }

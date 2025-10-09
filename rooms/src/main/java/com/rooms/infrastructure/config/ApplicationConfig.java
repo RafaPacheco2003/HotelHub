@@ -2,10 +2,7 @@ package com.rooms.infrastructure.config;
 
 
 import com.rooms.application.services.Services;
-import com.rooms.application.usecases.CreateUseCaseImpl;
-import com.rooms.application.usecases.DeleteUseCaseImpl;
-import com.rooms.application.usecases.RetrieveUseCaseImpl;
-import com.rooms.application.usecases.UpdateUseCaseImpl;
+import com.rooms.application.usecases.*;
 import com.rooms.domian.ports.out.RepositoryPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +16,8 @@ public class ApplicationConfig {
             new CreateUseCaseImpl(repositoryPort),
                 new RetrieveUseCaseImpl(repositoryPort),
                 new UpdateUseCaseImpl(repositoryPort),
-                new DeleteUseCaseImpl(repositoryPort)
+                new DeleteUseCaseImpl(repositoryPort),
+                new ExistsByIdUseCaseImpl(repositoryPort)
         );
     }
 }

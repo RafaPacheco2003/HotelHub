@@ -37,7 +37,9 @@ public class JpaRepositoryAdapter implements RepositoryPort {
                 .stream()
                 .map(roomMapper::toModel)
                 .collect(Collectors.toList());
-    }@Override
+    }
+
+    @Override
     public Rooms update(Long roomId, Rooms rooms) {
 
 
@@ -54,6 +56,19 @@ public class JpaRepositoryAdapter implements RepositoryPort {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean existsById(Long roomId) {
+        return jpaRepository.existsById(roomId);
+    }
+
+    @Override
+    public List<Rooms> findByRoomType(String roomType) {
+        return jpaRepository.findByRoomType(roomType)
+                .stream()
+                .map(roomMapper::toModel)
+                .collect(Collectors.toList());
     }
 
 }
